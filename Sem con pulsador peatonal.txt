@@ -1,0 +1,87 @@
+// C++ code
+//
+#define BOTON 7
+#define ROJO 6
+#define AMARILLO 5
+#define VERDE 4
+unsigned long tiempoAnteriorL1=0;
+unsigned long tiempoAnteriorL2=0;
+unsigned long tiempoAnteriorL3=0;
+
+void setup()
+{
+  Serial.begin(9600);
+  	pinMode(BOTON,INPUT);
+ 	pinMode(ROJO,OUTPUT);
+	pinMode(AMARILLO,OUTPUT);
+    pinMode(VERDE,OUTPUT);
+  
+ tiempoAnteriorL1 = millis();
+ tiempoAnteriorL2 = millis(); 
+ tiempoAnteriorL3 = millis();
+}
+
+void loop()
+{ 
+  if (millis()<= tiempoAnteriorL1 +10000){
+   digitalWrite(ROJO, HIGH);
+  }else{
+    if(millis()<= tiempoAnteriorL1 +26000){
+    digitalWrite(ROJO, LOW);
+    }else{tiempoAnteriorL1 = millis();}
+  }
+   if (millis()<= tiempoAnteriorL2 +10000){
+   digitalWrite(AMARILLO, LOW);
+  }else{
+    if(millis()<= tiempoAnteriorL2 +13000){
+    digitalWrite(AMARILLO, HIGH);
+    }else{tiempoAnteriorL2 = millis();}
+  }
+   if (millis()<= tiempoAnteriorL3 +13000){
+   digitalWrite(VERDE, LOW);
+  }else{
+    if(millis()<= tiempoAnteriorL3 +23000){
+    digitalWrite(VERDE, HIGH);
+    }else{
+      if(millis()<= tiempoAnteriorL3 +26000){
+        digitalWrite(VERDE, LOW);
+    }else{tiempoAnteriorL3 = millis();}
+   }
+   }
+  
+  
+  
+  int EstadoBOTON = digitalRead(BOTON);
+  if(EstadoBOTON == HIGH && digitalRead(VERDE) == HIGH){
+  	digitalWrite(VERDE,LOW);
+    Serial.print("prendiste el boton\n");
+    tiempoAnteriorL1=millis();
+    tiempoAnteriorL2=millis();
+    tiempoAnteriorL3=millis();
+    if (millis()<= tiempoAnteriorL1 +10000){
+   digitalWrite(ROJO, HIGH);
+  }else{
+    if(millis()<= tiempoAnteriorL1 +26000){
+    digitalWrite(ROJO, LOW);
+    }else{tiempoAnteriorL1 = millis();}
+  }
+   if (millis()<= tiempoAnteriorL2 +10000){
+   digitalWrite(AMARILLO, LOW);
+  }else{
+    if(millis()<= tiempoAnteriorL2 +13000){
+    digitalWrite(AMARILLO, HIGH);
+    }else{tiempoAnteriorL2 = millis();}
+  }
+   if (millis()<= tiempoAnteriorL3 +13000){
+   digitalWrite(VERDE, LOW);
+  }else{
+    if(millis()<= tiempoAnteriorL3 +23000){
+    digitalWrite(VERDE, HIGH);
+    }else{
+      if(millis()<= tiempoAnteriorL3 +26000){
+        digitalWrite(VERDE, LOW);
+    }else{tiempoAnteriorL3 = millis();}
+   }
+   }
+  }
+}  
