@@ -42,7 +42,7 @@ void loop() {
       }
       break;
 
-    case 1: // AMARILLO
+    case 1: // AMARILLO A ROJO
       digitalWrite(VERDE, LOW);
       digitalWrite(AMARILLO, HIGH);
       digitalWrite(ROJO, LOW);
@@ -59,9 +59,19 @@ void loop() {
       digitalWrite(ROJO, HIGH);
 
       if (ahora - tiempoEstado >= 10000) {
-        estado = 0;
+        estado = 3;
         tiempoEstado = ahora;
       }
       break;
+    case 3: // AMARILLO A VERDE	
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;	
   }
 }
