@@ -1,0 +1,123 @@
+// C++ code
+// SEMÁFORO 1
+
+#define VERDE 4
+#define AMARILLO 5
+#define ROJO 6
+#define BOTON 7
+#define LED 8
+#define SENSOR 9  // Entrada analógica del sensor
+#define ALARMA 10  // Pin que envía la señal al Semáforo 2
+
+int estado = 0;  // 0 = Verde, 1 = Amarillo, 2 = Rojo
+unsigned long tiempoEstado = 0;
+bool botonPresionado = false;
+bool esperandoCambio = false;
+int ultimoEstadoBoton = LOW;
+
+void setup() {
+  pinMode(VERDE, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(ROJO, OUTPUT);
+  pinMode(BOTON, INPUT);
+  pinMode (LED, OUTPUT);
+  pinMode(SENSOR, INPUT);
+  pinMode(ALARMA, OUTPUT);
+  Serial.begin(9600);
+  tiempoEstado = millis();
+}
+
+void loop() {
+  unsigned long ahora = millis();
+  unsigned long tiempoActual = millis();
+  unsigned long tiempoAnterior = 0;  // Último tiempo de lectura
+  const unsigned long intervalo = 100;  // Tiempo mínimo entre lecturas (en ms)
+  int sensor = 0;
+
+  sensor = digitalRead(SENSOR);
+  
+  if (sensor == 0) {
+    digitalWrite(LED, HIGH);
+  }
+  if (sensor == 1) {
+    digitalWrite(LED, LOW);
+  }
+
+  // Lectura de flanco de subida del botón
+  int estadoActualBoton = digitalRead(BOTON);
+
+  if (estadoActualBoton == HIGH && ultimoEstadoBoton == LOW) {
+    Serial.println("Botón presionado");
+    botonPresionado = true;
+  }
+  ultimoEstadoBoton = estadoActualBoton;
+
+  //
+  if (SENSOR == HIGH) {
+    digitalWrite(LED, HIGH);
+    Serial.println("Movimiento detectado!");
+  }else {
+    digitalWrite(LED, LOW);
+  }
+
+  // Semáforo 1
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+
+      if (botonPresionado && !esperandoCambio) {
+        // Si se presiona el botón, forzar cambio al amarillo pronto
+        esperandoCambio = true;
+        tiempoEstado = ahora;  // iniciar el tiempo para cambiar a amarillo antes de lo previsto
+      }
+
+      if (esperandoCambio || ahora - tiempoEstado >= 10000) {
+    	Serial.print("Antes del cambio: tiempoEstado = ");
+    	Serial.print(tiempoEstado);
+    	Serial.print(", ahora = ");
+    	Serial.println(ahora);
+
+    	estado = 1;
+    	tiempoEstado = ahora;  // Se actualiza el tiempo de referencia
+
+    	Serial.print("Después del cambio: tiempoEstado = ");
+    	Serial.print(tiempoEstado);
+    	Serial.print(", ahora = ");
+    	Serial.println(ahora);
+	  }
+      break;
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+    
+      if (sensor == 0 && estado == 2) {
+  		digitalWrite(ALARMA, HIGH);  // Enviar señal de infracción
+  		Serial.println("Infracción detectada: enviando señal al Semáforo 2");
+	  } else {
+  		digitalWrite(ALARMA, LOW);   // No hay infracción, no enviar señal
+	  }
+      
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 0;
+        tiempoEstado = ahora;
+        botonPresionado = false;
+        esperandoCambio = false;
+      }
+      break;
+  }
+} 
