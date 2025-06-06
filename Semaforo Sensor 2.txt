@@ -1,0 +1,119 @@
+// C++ code
+//
+
+
+#define BOTON 7
+#define ROJO 6
+#define AMARILLO 5
+#define VERDE 4
+#define estadoIR 9  // Entrada analógica del sensor
+#define Led 8
+
+
+int estado = 0;  // 0 = Verde, 1 = Amarillo, 2 = Rojo
+unsigned long tiempoEstado = 0;
+bool botonPresionado = false;
+bool esperandoCambio = false;
+
+int ultimoEstadoBoton = LOW;
+
+void setup() {
+  pinMode(BOTON, INPUT);
+  pinMode(ROJO, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(VERDE, OUTPUT);
+  Serial.begin(9600);
+  tiempoEstado = millis();
+  pinMode (Led, OUTPUT);
+  pinMode(estadoIR, INPUT);
+  
+}
+
+void loop() {
+  unsigned long ahora = millis();
+  unsigned long tiempoActual = millis();
+  unsigned long tiempoAnterior = 0;  // Último tiempo de lectura
+const unsigned long intervalo = 100;  // Tiempo mínimo entre lecturas (en ms)
+  
+int sensor = 0;
+
+  sensor = digitalRead(estadoIR);
+  
+  if (sensor == 0) {
+    digitalWrite(Led, HIGH);
+  }
+  if (sensor == 1) {
+    digitalWrite(Led, LOW);
+  }
+   
+  
+  // Lectura de flanco de subida del botón
+  int estadoActualBoton = digitalRead(BOTON);
+  if (estadoActualBoton == HIGH && ultimoEstadoBoton == LOW) {
+    Serial.println("Botón presionado");
+    botonPresionado = true;
+  }
+  ultimoEstadoBoton = estadoActualBoton;
+  
+  if (estadoIR == HIGH) {
+    digitalWrite(Led, HIGH);
+    Serial.println("Movimiento detectado! 🚶");
+  } else {
+    digitalWrite(Led, LOW);
+  }
+
+
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+
+      if (botonPresionado && !esperandoCambio) {
+        // Si se presiona el botón, forzar cambio al amarillo pronto
+        esperandoCambio = true;
+        tiempoEstado = ahora;  // iniciar el tiempo para cambiar a amarillo antes de lo previsto
+      }
+
+      if (esperandoCambio || ahora - tiempoEstado >= 10000) {
+    Serial.print("Antes del cambio: tiempoEstado = ");
+    Serial.print(tiempoEstado);
+    Serial.print(", ahora = ");
+    Serial.println(ahora);
+
+    estado = 1;
+    tiempoEstado = ahora;  // Se actualiza el tiempo de referencia
+
+    Serial.print("Después del cambio: tiempoEstado = ");
+    Serial.print(tiempoEstado);
+    Serial.print(", ahora = ");
+    Serial.println(ahora);
+}
+
+      break;
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 0;
+        tiempoEstado = ahora;
+        botonPresionado = false;
+        esperandoCambio = false;
+      }
+      break;
+  }
+} 
