@@ -1,0 +1,165 @@
+//semaforo 1:
+
+#include <VirtualWire.h>
+
+#define VERDE 4
+#define AMARILLO 5
+#define ROJO 6
+#define BOTON 7
+#define LED 8
+#define SENSOR A0       // Entrada analogica
+#define ALARMA 10       // Pin de transmision RF
+
+int estado = 0;  // 0 = Verde, 1 = Amarillo, 2 = Rojo
+unsigned long tiempoEstado = 0;
+bool botonPresionado = false;
+bool esperandoCambio = false;
+int ultimoEstadoBoton = LOW;
+
+void setup() {
+  pinMode(VERDE, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(ROJO, OUTPUT);
+  pinMode(BOTON, INPUT);
+  pinMode(LED, OUTPUT);
+  
+  vw_set_tx_pin(ALARMA);  // Pin TX RF
+  vw_setup(2000);         // Velocidad de transmision
+
+  Serial.begin(9600);
+  tiempoEstado = millis();
+}
+
+void loop() {
+  unsigned long ahora = millis();
+
+  int valorSensor = analogRead(SENSOR);  // Lectura analogica
+  bool hayInfraccion = (valorSensor < 500);  // Umbral ajustable
+
+  digitalWrite(LED, hayInfraccion ? HIGH : LOW);
+
+  int estadoActualBoton = digitalRead(BOTON);
+  if (estadoActualBoton == HIGH && ultimoEstadoBoton == LOW) {
+    Serial.println("Boton presionado");
+    botonPresionado = true;
+  }
+  ultimoEstadoBoton = estadoActualBoton;
+
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+      if (botonPresionado && !esperandoCambio) {
+        esperandoCambio = true;
+        tiempoEstado = ahora;
+      }
+      if (esperandoCambio || ahora - tiempoEstado >= 10000) {
+        estado = 1;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+
+      if (hayInfraccion) {
+        const char *msg = "INFRACCION";
+        vw_send((uint8_t *)msg, strlen(msg));
+        vw_wait_tx();
+        Serial.println("Infraccion detectada: enviando senal al Semaforo 2");
+      }
+
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 0;
+        tiempoEstado = ahora;
+        botonPresionado = false;
+        esperandoCambio = false;
+      }
+      break;
+  }
+}
+
+//semaforo 2:
+
+#include <VirtualWire.h>
+
+#define VERDE 4
+#define AMARILLO 5
+#define ROJO 6
+#define INFRACCION 7  // Pin de recepcion RF
+
+int estado = 0;
+unsigned long tiempoEstado = 0;
+
+void setup() {
+  pinMode(ROJO, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(VERDE, OUTPUT);
+
+  vw_set_rx_pin(INFRACCION);
+  vw_setup(2000);
+  vw_rx_start();
+
+  Serial.begin(9600);
+  tiempoEstado = millis();
+}
+
+void loop() {
+  unsigned long ahora = millis();
+  uint8_t tamano = 32;
+  char mensaje[tamano];
+
+  if (vw_get_message((uint8_t *)mensaje, &tamano)) {
+    mensaje[tamano] = '\0';
+    if (strcmp(mensaje, "INFRACCION") == 0) {
+      estado = 2;
+      tiempoEstado = ahora;
+      Serial.println("Semaforo 2 recibio INFRACCION: cambiando a ROJO");
+    }
+  }
+
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 1;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;
+  }
+}
