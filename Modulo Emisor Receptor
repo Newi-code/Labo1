@@ -89,6 +89,16 @@ void loop() {
         esperandoCambio = false;
       }
       break;
+    case 3: // AMARILLO A VERDE	
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;	
   }
 }
 
@@ -161,5 +171,15 @@ void loop() {
         tiempoEstado = ahora;
       }
       break;
+    case 3: // AMARILLO A VERDE	
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;	
   }
 }
