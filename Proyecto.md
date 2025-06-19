@@ -23,7 +23,7 @@ El sistema:<br>
 5. **Máquina de Estados**<br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
 •	<u>Estados posibles</u>:<br>
--	**Estado 0**: Verde - Semáforo en verde para el tráfico vehicular<br>
+-	<b>Estado 0</b>: Verde - Semáforo en verde para el tráfico vehicular<br>
 -	**Estado 1**: Amarillo a Rojo - Transición de verde a rojo<br>
 -	**Estado 2**: Rojo - Semáforo en rojo para el tráfico vehicular (verde para peatones)<br>
 -	**Estado 3**: Amarillo a Verde - Transición de rojo a verde<br>
@@ -95,12 +95,7 @@ o	<b>Sensor IR</b> (digital).<br>
 o	<b>LEDs de los semáforos vehiculares</b>: verde, amarillo, rojo.<br>
 o	<b>LED indicador del Sensor IR</b>: Marca si hay detección de movimiento.<br>
 o	<b>Pantalla LCD</b>: para mostrar tiempo restante para el cruce peatonal.<br>
-
-**Esquema de Diseño**
-	Main Arduino	 
-		 
-
-
+<br>
 
 **Cumplimiento de Requisitos del Proyecto**:
 |          Requisito				|			Cumplimiento                                          |
