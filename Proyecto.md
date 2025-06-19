@@ -40,7 +40,7 @@ Amarillo a Verde (3 segundos)	        →	Verde
 •	<u>Implementación en Código</u>:
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:
 ESQUEMA
-'''c
+'''cpp
 95	switch (estado) {
 96	case 0: // VERDE
 97	// Lógica del estado verde
