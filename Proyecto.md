@@ -85,16 +85,16 @@ ESQUEMA<br>
 •	<u>Comportamiento Especial</u>:<br>
 -	<b>Prioridad Peatonal</b>: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
 -	<b>Detección de Infracción</b>: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
--	**Sincronización**: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
+-	<b>Sincronización</b>: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
 Esta máquina de estados proporciona un control robusto y predecible del semáforo, respondiendo tanto a temporizaciones fijas (switch-case) como a eventos externos (botón peatonal, detección de infracciones).<br>
 •	<u>Entradas y Salidas</u>:<br>
--	**Entradas**:<br>
-o	**Botón peatonal** (digital).<br>
-o	**Sensor IR** (digital).<br>
+-	<b>Entradas</b>:<br>
+o	<b>Botón peatonal</b> (digital).<br>
+o	<b>Sensor IR</b> (digital).<br>
 -	<u>Salidas</u>:<br>
-o	**LEDs de los semáforos vehiculares**: verde, amarillo, rojo.<br>
-o	**LED indicador del Sensor IR**: Marca si hay detección de movimiento.<br>
-o	??? Pantalla LCD: para mostrar tiempo restante para el cruce peatonal.<br>
+o	<b>LEDs de los semáforos vehiculares</b>: verde, amarillo, rojo.<br>
+o	<b>LED indicador del Sensor IR</b>: Marca si hay detección de movimiento.<br>
+o	<b>Pantalla LCD</b>: para mostrar tiempo restante para el cruce peatonal.<br>
 
 **Esquema de Diseño**
 	Main Arduino	 
