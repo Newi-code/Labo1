@@ -72,20 +72,19 @@ ESQUEMA<br>
 121&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado amarillo<br>
 122&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 3 seg) {<br>
 123&nbsp;&nbsp;&nbsp;&nbsp;cambiar a VERDE;<br>
-124&nbsp;&nbsp;&nbsp;&nbsp;resetear flags;<br>
-125&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-126&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-127&nbsp;&nbsp;&nbsp;&nbsp;}
+124&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+125&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+126&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 </div>
 <br>
 •	<u>Variables de Control</u>:<br>
--	**estado**: Almacena el estado actual (0-3)<br>
--	**tiempoEstado**: Marca de tiempo cuando se entró al estado actual<br>
--	**botonPresionado**: Flag que indica si el botón peatonal fue presionado<br>
--	**esperandoCambio**: Flag que controla la transición anticipada por botón<br>
+-	<b>estado</b>: Almacena el estado actual (0-3)<br>
+-	<b>tiempoEstado</b>: Marca de tiempo cuando se entró al estado actual<br>
+-	<b>botonPresionado</b>: Flag que indica si el botón peatonal fue presionado<br>
+-	<b>esperandoCambio</b>: Flag que controla la transición anticipada por botón<br>
 •	<u>Comportamiento Especial</u>:<br>
--	**Prioridad Peatonal**: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
--	**Detección de Infracción**: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
+-	<b>Prioridad Peatonal</b>: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
+-	<b>Detección de Infracción</b>: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
 -	**Sincronización**: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
 Esta máquina de estados proporciona un control robusto y predecible del semáforo, respondiendo tanto a temporizaciones fijas (switch-case) como a eventos externos (botón peatonal, detección de infracciones).<br>
 •	<u>Entradas y Salidas</u>:<br>
