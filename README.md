@@ -11,7 +11,7 @@ Cómo funciona:<br>
 
 ![Imagen del circuito Semáforo 1](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_1.jpeg?raw=true)
 ![Imagen del circuito Semáforo 2](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_2.jpeg?raw=true)<br>
-Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio
+Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio
 
 <b>Funcionalidades Detalladas:</b><br>
 
