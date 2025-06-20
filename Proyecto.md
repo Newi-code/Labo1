@@ -1,6 +1,6 @@
-**Proyecto: 	Semáforo Inteligente con Dispositivo para Cruce Peatonal, Detección de Infracción y Semáforo Secundario para Control de Velocidad**
+<b>Proyecto: 	Semáforo Inteligente con Dispositivo para Cruce Peatonal, Detección de Infracción y Semáforo Secundario para Control de Velocidad</b>
 
-**Descripción General:**<br>
+<b>Descripción General:</b><br>
 <br>
 El proyecto consiste en el diseño e implementación de un sistema de dos semáforos controlados por Arduino, que regulan el tránsito vehicular y peatonal.<br>
 El sistema:<br>
@@ -10,13 +10,13 @@ El sistema:<br>
 •	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
 •	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
 <br>
-**Funcionalidades Detalladas:**
-1. **Control de Tráfico Vehicular**<br>
+<b>Funcionalidades Detalladas:</b>
+1. <b>Control de Tráfico Vehicular</b><br>
 •	LED verde, amarillo y rojo en cada semáforo de autos. Ciclo configurable en cada semáforo (por ejemplo: verde = 10 seg, amarillo = 3 seg, rojo = 10 seg).<br>
 •	Sensor IR que detecta los vehículos que cruzan la bocacalle del semáforo principal (“maestro”) en infracción (es decir mientras el semáforo se encontraba en rojo) y envía una señal de alarma al semáforo secundario, que funciona como “esclavo” del primero y estaría ubicado a 100 metros de este. Al recibir la alarma se pone inmediatamente pone en rojo, obligando al vehículo a frenar.<br>
-2. **Cruce Peatonal Inteligente**<br>
+2. <b>Cruce Peatonal Inteligente</b><br>
 •	Botón pulsador que simula el pedido de cruce peatonal.<br>
-3. **Contador de Flancos**<br>
+3. <b>Contador de Flancos</b><br>
 •	Detección del flanco de subida del botón de cruce peatonal (pasar de LOW a HIGH).<br>
 4. **Control por Tiempo**<br>
 •	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
