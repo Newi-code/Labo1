@@ -8,13 +8,13 @@ Cómo funciona:<br>
 -	Habilita el paso de peatones mediante un pulsador.<br>
 -	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
 -	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
-
+<br>
 <div>
 <img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/Semaforo_1.jpeg" width="45%" alt="Captura">
 <img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/Semaforo_2.jpeg" width="45%" alt="Captura">
 </div>
 Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio<br>
-
+<br>
 <b>Funcionalidades Detalladas:</b><br>
 
 <b>1. Control de Tráfico Vehicular</b><br>
