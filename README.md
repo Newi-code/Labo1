@@ -9,8 +9,8 @@ Cómo funciona:<br>
 -	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
 -	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
 
-![Imagen del circuito Semáforo 1](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_1.jpeg?raw=true)
-![Imagen del circuito Semáforo 2](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_2.jpeg?raw=true)<br>
+![Imagen del circuito Semáforo 1](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_1.jpeg?raw=true; width="50%")
+![Imagen del circuito Semáforo 2](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_2.jpeg?raw=true; width="50%")<br>
 Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio
 
 <b>Funcionalidades Detalladas:</b><br>
@@ -51,7 +51,7 @@ La máquina de estados se implementa mediante una estructura switch-case en el l
 
 ESQUEMA
 
-![Esquema](https://github.com/Newi-code/Labo1/blob/imagenes/ESQUEMA.jpg?raw=true)<br>
+![Esquema](https://github.com/Newi-code/Labo1/blob/imagenes/ESQUEMA.jpg?raw=true; width="50%")<br>
 
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
