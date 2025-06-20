@@ -5,10 +5,10 @@
 El proyecto consiste en el diseño e implementación de un sistema de dos semáforos controlados por Arduino, que regulan el tránsito vehicular y peatonal.<br>
 El sistema:<br>
 -	Detecta la presencia de vehículos mediante sensor de movimiento (IR).<br>
-•	Habilita el paso de peatones mediante un pulsador.<br>
-•	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
-•	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
-•	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
+-	Habilita el paso de peatones mediante un pulsador.<br>
+-	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
+-	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
+-	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
 <br>
 <b>Funcionalidades Detalladas:</b>
 1. <b>Control de Tráfico Vehicular</b><br>
@@ -22,26 +22,26 @@ El sistema:<br>
 •	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
 5. <b>Máquina de Estados</b><br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
-•	<u>Estados posibles</u>:<br>
--	<b>Estado 0</b>: Verde - Semáforo en verde para el tráfico vehicular<br>
--	<b>Estado 1</b>: Amarillo a Rojo - Transición de verde a rojo<br>
--	<b>Estado 2</b>: Rojo - Semáforo en rojo para el tráfico vehicular (verde para peatones)<br>
--	<b>Estado 3</b>: Amarillo a Verde - Transición de rojo a verde<br>
-•	<u>Transiciones entre Estados</u>:
+-	<u>Estados posibles</u>:<br>
+•	<b>Estado 0</b>: Verde - Semáforo en verde para el tráfico vehicular<br>
+•	<b>Estado 1</b>: Amarillo a Rojo - Transición de verde a rojo<br>
+•	<b>Estado 2</b>: Rojo - Semáforo en rojo para el tráfico vehicular (verde para peatones)<br>
+•	<b>Estado 3</b>: Amarillo a Verde - Transición de rojo a verde<br>
+-	<u>Transiciones entre Estados</u>:
 Las transiciones entre estados se controlan mediante:<br>
--	<b>Temporización</b>: Cada estado tiene un tiempo máximo de duración<br>
--	<b>Eventos externos</b>:<br>
+•	<b>Temporización</b>: Cada estado tiene un tiempo máximo de duración<br>
+•	<b>Eventos externos</b>:<br>
 1.	Presión del botón peatonal<br>
 2.	Detección de infracción por el sensor<br>
-•	<u>Diagrama de Transición (Semáforo 1)</u>:
+-	<u>Diagrama de Transición (Semáforo 1)</u>:
 Verde 	          (10 segundos o botón)	→	Amarillo a Rojo<br>
 Amarillo a Rojo  (3 segundos)	        →	Rojo<br>
 Rojo 	          (10 segundos) 	    →	Amarillo a Verde<br>
 Amarillo a Verde (3 segundos)	        →	Verde<br>
-•	<u>Implementación en Código</u>:<br>
+-	<u>Implementación en Código</u>:<br>
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 ESQUEMA<br>
-<div style="width: 500px; border: 2px solid rgb(118, 118, 118); padding: 10px; border-radius: 3px; background: rgb(180, 180, 180); color: black;">
+<div style="width: 500px; border: 2px solid rgb(100, 100, 100); padding: 10px; border-radius: 5px; background: rgb(150, 150, 150); color: black;">
 
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
@@ -77,21 +77,21 @@ ESQUEMA<br>
 126&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 </div>
 <br>
-•	<u>Variables de Control</u>:<br>
--	<b>estado</b>: Almacena el estado actual (0-3)<br>
--	<b>tiempoEstado</b>: Marca de tiempo cuando se entró al estado actual<br>
--	<b>botonPresionado</b>: Flag que indica si el botón peatonal fue presionado<br>
--	<b>esperandoCambio</b>: Flag que controla la transición anticipada por botón<br>
-•	<u>Comportamiento Especial</u>:<br>
--	<b>Prioridad Peatonal</b>: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
--	<b>Detección de Infracción</b>: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
--	<b>Sincronización</b>: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
+-	<u>Variables de Control</u>:<br>
+•	<b>estado</b>: Almacena el estado actual (0-3)<br>
+•	<b>tiempoEstado</b>: Marca de tiempo cuando se entró al estado actual<br>
+•	<b>botonPresionado</b>: Flag que indica si el botón peatonal fue presionado<br>
+•	<b>esperandoCambio</b>: Flag que controla la transición anticipada por botón<br>
+-	<u>Comportamiento Especial</u>:<br>
+•	<b>Prioridad Peatonal</b>: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
+•	<b>Detección de Infracción</b>: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
+•	<b>Sincronización</b>: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
 Esta máquina de estados proporciona un control robusto y predecible del semáforo, respondiendo tanto a temporizaciones fijas (switch-case) como a eventos externos (botón peatonal, detección de infracciones).<br>
-•	<u>Entradas y Salidas</u>:<br>
--	<b>Entradas</b>:<br>
+-	<u>Entradas y Salidas</u>:<br>
+•	<b>Entradas</b>:<br>
 o	<b>Botón peatonal</b> (digital).<br>
 o	<b>Sensor IR</b> (digital).<br>
--	<u>Salidas</u>:<br>
+•	<b>Salidas</b>:<br>
 o	<b>LEDs de los semáforos vehiculares</b>: verde, amarillo, rojo.<br>
 o	<b>LED indicador del Sensor IR</b>: Marca si hay detección de movimiento.<br>
 o	<b>Pantalla LCD</b>: para mostrar tiempo restante para el cruce peatonal.<br>
@@ -108,5 +108,6 @@ o	<b>Pantalla LCD</b>: para mostrar tiempo restante para el cruce peatonal.<br>
 <b>Semáforo secundario</b>:<br>
 •	Se coloca un <b>sensor IR justo después del semáforo principal</b> (unos metros adelante) que detecta si un automóvil <b>cruzó mientras la luz del semáforo principal estaba en rojo</b>.<br>
 •	Esto requiere registrar el <b>estado del semáforo</b> en una variable (estadoSemaforo 1) y leer si el sensor detecta paso de vehículo cuando este estado es "ROJO".<br>
+<br>
 <b>Activación del Semáforo Secundario</b>:<br>
 •	Si se detecta una infracción, el Arduino activa inmediatamente el <b>semáforo secundario en ROJO</b>, obligando al auto infractor (y a todos) a detenerse más adelante.<br>
