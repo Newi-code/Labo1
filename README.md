@@ -32,7 +32,7 @@ Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
 -	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
 
 <b>5. Máquina de Estados</b><br>
-Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
 -	<b>Estados posibles</b>:<br>
 •	Estado 0: Verde - Semáforo en verde para el tráfico vehicular<br>
 •	Estado 1: Amarillo a Rojo - Transición de verde a rojo<br>
