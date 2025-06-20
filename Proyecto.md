@@ -29,7 +29,7 @@ Cómo funciona:<br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
 -	<b>Estados posibles</b>:<br>
 •	Estado 0: Verde - Semáforo en verde para el tráfico vehicular<br>
-•	Estado 1>: Amarillo a Rojo - Transición de verde a rojo<br>
+•	Estado 1: Amarillo a Rojo - Transición de verde a rojo<br>
 •	Estado 2: Rojo - Semáforo en rojo para el tráfico vehicular (verde para peatones)<br>
 •	Estado 3: Amarillo a Verde - Transición de rojo a verde<br>
 -	<b>Transiciones entre Estados</b>:
@@ -40,9 +40,9 @@ Las transiciones entre estados se controlan mediante:<br>
 &nbsp;&nbsp;2.	Detección de infracción por el sensor<br>
 -	<b>Diagrama de Transición (Semáforo 1)</b>:<br>
 Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10 segundos o botón)&nbsp;→&nbsp;Amarillo a Rojo<br>
-Amarillo a Rojo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Rojo<br>
-Rojo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Amarillo a Verde<br>
-Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Verde<br>
+Amarillo a Rojo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Rojo<br>
+Rojo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Amarillo a Verde<br>
+Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→&nbsp;Verde<br>
 -	<b>Implementación en Código</b>:<br>
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 ESQUEMA<br>
