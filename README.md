@@ -1,4 +1,4 @@
-<b>Proyecto: 	Semáforo Inteligente con Dispositivo para Cruce Peatonal, Detección de Infracción y Semáforo Secundario para Control de Velocidad</b>
+<b>Proyecto:&nbsp;&nbsp;&nbsp;&nbsp;Semáforo Inteligente con Dispositivo para Cruce Peatonal, Detección de Infracción y Semáforo Secundario para Control de Velocidad</b>
 
 <b>Descripción General:</b><br>
 
