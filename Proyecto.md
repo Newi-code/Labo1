@@ -102,7 +102,6 @@ o	Sensor IR (digital).<br>
 o	LEDs de los semáforos vehiculares: verde, amarillo, rojo.<br>
 o	LED indicador del Sensor IR: Marca si hay detección de movimiento.<br>
 o	Pantalla LCD: para mostrar tiempo restante para el cruce peatonal.<br>
-<br>
 
 <b>Cumplimiento de Requisitos del Proyecto</b>:
 |          Requisito				|			Cumplimiento                                          |
