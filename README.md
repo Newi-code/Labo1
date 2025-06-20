@@ -13,7 +13,7 @@ Cómo funciona:<br>
 <img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/Semaforo_1.jpeg" width="45%" alt="Captura">
 <img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/Semaforo_2.jpeg" width="45%" alt="Captura">
 </div>
-Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio
+Imagen de Semáforo 1 armado en Laboratorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Imagen de Semáforo 2 armado en Laboratorio
 
 <b>Funcionalidades Detalladas:</b><br>
 
@@ -53,7 +53,9 @@ La máquina de estados se implementa mediante una estructura switch-case en el l
 
 ESQUEMA
 
-![Esquema](https://github.com/Newi-code/Labo1/blob/imagenes/ESQUEMA.jpg?raw=true; width="50%")<br>
+<div align="center">
+<img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/ESQUEMA.jpg" width="50%" alt="Captura">
+</div><br>
 
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
