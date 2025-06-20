@@ -10,6 +10,7 @@ Cómo funciona:<br>
 -	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
 
 ![Imagen del circuito Semáforo 1](https://github.com/Newi-code/Labo1/blob/imagenes/Semaforo_1.jpeg?raw=true)
+Imagen del circuito Semáforo 1 armado en Laboratorio
 
 <b>Funcionalidades Detalladas:</b><br>
 
