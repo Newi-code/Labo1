@@ -4,7 +4,7 @@
 <br>
 El proyecto consiste en el diseño e implementación de un sistema de dos semáforos controlados por Arduino, que regulan el tránsito vehicular y peatonal.<br>
 El sistema:<br>
-•	Detecta la presencia de vehículos mediante sensor de movimiento (IR).<br>
+-	Detecta la presencia de vehículos mediante sensor de movimiento (IR).<br>
 •	Habilita el paso de peatones mediante un pulsador.<br>
 •	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
 •	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
