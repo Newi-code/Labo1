@@ -8,7 +8,6 @@ Cómo funciona:<br>
 -	Habilita el paso de peatones mediante un pulsador.<br>
 -	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
 -	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
--	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
 
 <b>Funcionalidades Detalladas:</b><br>
 
@@ -100,12 +99,12 @@ o	Sensor IR (digital).<br>
 •	<b>Salidas</b>:<br>
 o	LEDs de los semáforos vehiculares: verde, amarillo, rojo.<br>
 o	LED indicador del Sensor IR: Marca si hay detección de movimiento.<br>
-o	Pantalla LCD: para mostrar tiempo restante para el cruce peatonal.<br>
+
 
 <b>Cumplimiento de Requisitos del Proyecto</b>:
 |          Requisito				|			Cumplimiento                                          |
 |-----------------------------------|-----------------------------------------------------------------|
-|-	Control de Entradas y Salidas:	|Múltiples entradas (botón, sensor), múltiples salidas (LEDs, LCD)|
+|-	Control de Entradas y Salidas:	|Múltiples entradas (botón, sensor), múltiples salidas (LEDs)     |
 |-	Contador de Flancos:			|Detección de pulsaciones del botón peatonal                      |
 |-	Control Lógico por Tiempo:		|Manejo de semáforo con temporización dinámica                    |
 |-	Control por Máquina de Estados:	|Transiciones claras entre estados según eventos y tiempo         |
