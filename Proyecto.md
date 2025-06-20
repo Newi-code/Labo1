@@ -11,16 +11,16 @@ El sistema:<br>
 -	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
 <br>
 <b>Funcionalidades Detalladas:</b><br>
-1. <b>Control de Tráfico Vehicular</b><br>
+<b>1. Control de Tráfico Vehicular</b><br>
 -	LED verde, amarillo y rojo en cada semáforo de autos. Ciclo configurable en cada semáforo (por ejemplo: verde = 10 seg, amarillo = 3 seg, rojo = 10 seg).<br>
 -	Sensor IR que detecta los vehículos que cruzan la bocacalle del semáforo principal (“maestro”) en infracción (es decir mientras el semáforo se encontraba en rojo) y envía una señal de alarma al semáforo secundario, que funciona como “esclavo” del primero y estaría ubicado a 100 metros de este. Al recibir la alarma se pone inmediatamente pone en rojo, obligando al vehículo a frenar.<br>
-2. <b>Cruce Peatonal Inteligente</b><br>
+<b>2. Cruce Peatonal Inteligente</b><br>
 -	Botón pulsador que simula el pedido de cruce peatonal.<br>
-3. <b>Contador de Flancos</b><br>
+<b>3. Contador de Flancos</b><br>
 -	Detección del flanco de subida del botón de cruce peatonal (pasar de LOW a HIGH).<br>
-4. <b>Control por Tiempo</b><br>
+<b>4. Control por Tiempo</b><br>
 -	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
-5. <b>Máquina de Estados</b><br>
+<b>5. Máquina de Estados</b><br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
 -	<u>Estados posibles</u>:<br>
 •	<b>Estado 0</b>: Verde - Semáforo en verde para el tráfico vehicular<br>
@@ -42,7 +42,6 @@ Amarillo a Verde (3 segundos)	        →	Verde<br>
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 ESQUEMA<br>
 <div style="width: 500px; border: 2px solid rgb(100, 100, 100); padding: 10px; border-radius: 5px; background: rgb(150, 150, 150); color: black;">
-
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
 &nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado verde<br>
