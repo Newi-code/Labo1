@@ -52,9 +52,13 @@ Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbs
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 
 ESQUEMA
-<p align="left" style="margin-left: 100px;">
-<img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/ESQUEMA.jpg" width="40%" alt="Captura">
-</p><br>
+<p style="padding-left: 100px; margin: 0;">
+  <img 
+    src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/ESQUEMA.jpg" 
+    width="40%"
+    alt="Esquema"
+  >
+</p>
 
 -	<b>Variables de Control</b>:<br>
 •	estado: Almacena el estado actual (0-3)<br>
