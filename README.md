@@ -51,6 +51,8 @@ La máquina de estados se implementa mediante una estructura switch-case en el l
 
 ESQUEMA
 
+![Esquema](https://github.com/Newi-code/Labo1/blob/imagenes/ESQUEMA.jpeg?raw=true)<br>
+
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
 &nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado verde<br>
