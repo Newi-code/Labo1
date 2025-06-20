@@ -1,7 +1,7 @@
 <b>Proyecto: 	Semáforo Inteligente con Dispositivo para Cruce Peatonal, Detección de Infracción y Semáforo Secundario para Control de Velocidad</b>
 
 <b>Descripción General:</b><br>
-<br>
+
 El proyecto consiste en el diseño e implementación de un sistema de dos semáforos controlados por Arduino, que regulan el tránsito vehicular y peatonal.<br>
 Cómo funciona:<br>
 -	Detecta la presencia de vehículos mediante sensor de movimiento (IR).<br>
@@ -9,8 +9,9 @@ Cómo funciona:<br>
 -	Prioriza el cruce peatonal de forma segura y eficiente, minimizando el tiempo de espera.<br>
 -	Incluye control por máquina de estados (se refiere a la parte del código donde se usa el switch (estado) para manejar los distintos comportamientos del sistema, según el valor de la variable estado), control por tiempo (se ve representado por el uso de la función millis() para medir cuánto tiempo ha pasado desde un evento, y tomar decisiones en función de eso), y conteo de flancos (detección de pulsaciones).<br>
 -	Muestra al peatón el tiempo restante de cruce en una pantalla LCD ubicada en el semáforo principal.<br>
-<br>
+
 <b>Funcionalidades Detalladas:</b><br>
+
 <b>1. Control de Tráfico Vehicular</b><br>
 -	LED verde, amarillo y rojo en cada semáforo de autos. Ciclo configurable en cada semáforo (por ejemplo: verde = 10 seg, amarillo = 3 seg, rojo = 10 seg).<br>
 -	Sensor IR que detecta los vehículos que cruzan la bocacalle del semáforo principal (“maestro”) en infracción (es decir mientras el semáforo se encontraba en rojo) y envía una señal de alarma al semáforo secundario, que funciona como “esclavo” del primero y estaría ubicado a 100 metros de este. Al recibir la alarma se pone inmediatamente pone en rojo, obligando al vehículo a frenar.<br>
@@ -75,7 +76,7 @@ ESQUEMA<br>
 125&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
 126&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 </div>
-<br>
+
 -	<b>Variables de Control</b>b>:<br>
 •	estado: Almacena el estado actual (0-3)<br>
 •	tiempoEstado: Marca de tiempo cuando se entró al estado actual<br>
