@@ -15,12 +15,16 @@ Cómo funciona:<br>
 <b>1. Control de Tráfico Vehicular</b><br>
 -	LED verde, amarillo y rojo en cada semáforo de autos. Ciclo configurable en cada semáforo (por ejemplo: verde = 10 seg, amarillo = 3 seg, rojo = 10 seg).<br>
 -	Sensor IR que detecta los vehículos que cruzan la bocacalle del semáforo principal (“maestro”) en infracción (es decir mientras el semáforo se encontraba en rojo) y envía una señal de alarma al semáforo secundario, que funciona como “esclavo” del primero y estaría ubicado a 100 metros de este. Al recibir la alarma se pone inmediatamente pone en rojo, obligando al vehículo a frenar.<br>
+
 <b>2. Cruce Peatonal Inteligente</b><br>
 -	Botón pulsador que simula el pedido de cruce peatonal.<br>
+
 <b>3. Contador de Flancos</b><br>
 -	Detección del flanco de subida del botón de cruce peatonal (pasar de LOW a HIGH).<br>
+
 <b>4. Control por Tiempo</b><br>
 -	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
+
 <b>5. Máquina de Estados</b><br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
 -	<b>Estados posibles</b>:<br>
