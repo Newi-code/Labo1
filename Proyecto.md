@@ -82,16 +82,18 @@ ESQUEMA
 126&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 </div>
 
--	<b>Variables de Control</b>b>:<br>
+-	<b>Variables de Control</b>:<br>
 •	estado: Almacena el estado actual (0-3)<br>
 •	tiempoEstado: Marca de tiempo cuando se entró al estado actual<br>
 •	botonPresionado: Flag que indica si el botón peatonal fue presionado<br>
 •	esperandoCambio: Flag que controla la transición anticipada por botón<br>
+
 -	<b>Comportamiento Especial</b>:<br>
 •	Prioridad Peatonal: Cuando se presiona el botón (botonPresionado = true), el semáforo inicia la transición a rojo después del tiempo mínimo en verde.<br>
 •	Detección de Infracción: Durante el estado rojo, si el sensor detecta movimiento (estadoSensor == HIGH, infracción), se activa la alarma (ALARMA = HIGH) para notificar al semáforo secundario.<br>
 •	Sincronización: El tiempo en cada estado se controla comparando el tiempo actual (millis()) con el tiempo de entrada al estado (tiempoEstado).<br>
 Esta máquina de estados proporciona un control robusto y predecible del semáforo, respondiendo tanto a temporizaciones fijas (switch-case) como a eventos externos (botón peatonal, detección de infracciones).<br>
+
 -	<b>Entradas y Salidas</b>:<br>
 •	<b>Entradas</b>:<br>
 o	Botón peatonal (digital).<br>
@@ -113,6 +115,6 @@ o	Pantalla LCD: para mostrar tiempo restante para el cruce peatonal.<br>
 <b>Semáforo secundario</b>:<br>
 •	Se coloca un <b>sensor IR justo después del semáforo principal</b> (unos metros adelante) que detecta si un automóvil <b>cruzó mientras la luz del semáforo principal estaba en rojo</b>.<br>
 •	Esto requiere registrar el <b>estado del semáforo</b> en una variable (estadoSemaforo 1) y leer si el sensor detecta paso de vehículo cuando este estado es "ROJO".<br>
-<br>
+
 <b>Activación del Semáforo Secundario</b>:<br>
 •	Si se detecta una infracción, el Arduino activa inmediatamente el <b>semáforo secundario en ROJO</b>, obligando al auto infractor (y a todos) a detenerse más adelante.<br>
