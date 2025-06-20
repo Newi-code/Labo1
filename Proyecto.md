@@ -47,46 +47,39 @@ Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbs
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 
 ESQUEMA
-<div style="
-    border: 1px solid #d0d7de !important;
-    padding: 16px !important;
-    border-radius: 6px !important;
-    background-color: #f6f8fa !important;
-    color: #24292f !important;
-    margin: 15px 0 !important;
-">
-&nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
-&nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
-&nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado verde<br>
-&nbsp;&nbsp;98&nbsp;&nbsp;&nbsp;&nbsp;if (botón presionado O tiempo >= 10 seg) {<br>
-&nbsp;&nbsp;99&nbsp;&nbsp;&nbsp;&nbsp;cambiar a AMARILLO a ROJO;<br>
-100&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-101&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-102<br> 
-103&nbsp;&nbsp;&nbsp;&nbsp;case 1: // AMARILLO a ROJO<br>
-104&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado amarillo<br>
-105&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 3 seg) {<br>
-106&nbsp;&nbsp;&nbsp;&nbsp;cambiar a ROJO;<br>
-107&nbsp;&nbsp;&nbsp;&nbsp;	}<br>
-108&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-109&nbsp;&nbsp;&nbsp;&nbsp;<br>
-110&nbsp;&nbsp;&nbsp;&nbsp;case 2: // ROJO<br>
-111&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado rojo<br>
-112&nbsp;&nbsp;&nbsp;&nbsp;if (sensor detecta infracción) {<br>
-113&nbsp;&nbsp;&nbsp;&nbsp;activar alarma;<br>
-114&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-115&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 10 seg) {<br>
-116&nbsp;&nbsp;&nbsp;&nbsp;cambiar a AMARILLO A VERDE;<br>
-117&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-118&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-119<br>
-120&nbsp;&nbsp;&nbsp;&nbsp;case 3: // AMARILLO A VERDE<br>
-121&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado amarillo<br>
-122&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 3 seg) {<br>
-123&nbsp;&nbsp;&nbsp;&nbsp;cambiar a VERDE;<br>
-124&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-125&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-126&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<div style="font-size: 10px">
+<p>&nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {</p><br>
+<p>&nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE</p><br>
+<p>&nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado verde</p><br>
+<p>&nbsp;&nbsp;98&nbsp;&nbsp;&nbsp;&nbsp;if (botón presionado O tiempo >= 10 seg) {</p><br>
+<p>&nbsp;&nbsp;99&nbsp;&nbsp;&nbsp;&nbsp;cambiar a AMARILLO a ROJO;</p><br>
+<p>100&nbsp;&nbsp;&nbsp;&nbsp;}</p><br>
+<p>101&nbsp;&nbsp;&nbsp;&nbsp;break;</p><br>
+<p>102</p><br> 
+<p>103&nbsp;&nbsp;&nbsp;&nbsp;case 1: // AMARILLO a ROJO</p><br>
+<p>104&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado amarillo</p><br>
+<p>105&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 3 seg) {</p><br>
+<p>106&nbsp;&nbsp;&nbsp;&nbsp;cambiar a ROJO;</p><br>
+<p>107&nbsp;&nbsp;&nbsp;&nbsp;	}</p><br>
+<p>108&nbsp;&nbsp;&nbsp;&nbsp;break;</p><br>
+<p>109&nbsp;&nbsp;&nbsp;&nbsp;</p><br>
+<p>110&nbsp;&nbsp;&nbsp;&nbsp;case 2: // ROJO</p><br>
+<p>111&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado rojo</p><br>
+<p>112&nbsp;&nbsp;&nbsp;&nbsp;if (sensor detecta infracción) {</p><br>
+<p>113&nbsp;&nbsp;&nbsp;&nbsp;activar alarma;</p><br>
+<p>114&nbsp;&nbsp;&nbsp;&nbsp;}</p><br>
+<p>115&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 10 seg) {</p><br>
+<p>116&nbsp;&nbsp;&nbsp;&nbsp;cambiar a AMARILLO A VERDE;</p><br>
+<p>117&nbsp;&nbsp;&nbsp;&nbsp;}</p><br>
+<p>118&nbsp;&nbsp;&nbsp;&nbsp;break;</p><br>
+<p>119</p><br>
+<p>120&nbsp;&nbsp;&nbsp;&nbsp;case 3: // AMARILLO A VERDE</p><br>
+<p>121&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado amarillo</p><br>
+<p>122&nbsp;&nbsp;&nbsp;&nbsp;if (tiempo >= 3 seg) {</p><br>
+<p>123&nbsp;&nbsp;&nbsp;&nbsp;cambiar a VERDE;</p><br>
+<p>124&nbsp;&nbsp;&nbsp;&nbsp;}</p><br>
+<p>125&nbsp;&nbsp;&nbsp;&nbsp;break;</p><br>
+<p>126&nbsp;&nbsp;&nbsp;&nbsp;}</p><br>
 </div>
 
 -	<b>Variables de Control</b>:<br>
