@@ -22,7 +22,7 @@ El sistema:<br>
 -	Control de duración de cada luz del semáforo mediante temporizadores internos del Arduino (basados en millis()).<br>
 <b>5. Máquina de Estados</b><br>
 Controlar el comportamiento del semáforo principal, tiene los siguientes estados:<br>
--	<span style="Estados posibles"></span>:<br>
+-	<span style="text-decoration: underline">Estados posibles</span>:<br>
 •	<b>Estado 0</b>: Verde - Semáforo en verde para el tráfico vehicular<br>
 •	<b>Estado 1</b>: Amarillo a Rojo - Transición de verde a rojo<br>
 •	<b>Estado 2</b>: Rojo - Semáforo en rojo para el tráfico vehicular (verde para peatones)<br>
