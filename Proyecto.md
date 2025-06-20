@@ -41,7 +41,7 @@ Amarillo a Verde (3 segundos)	        →	Verde<br>
 •	<u>Implementación en Código</u>:<br>
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 ESQUEMA<br>
-<div style="width: 500px; border: 2px solid rgb(118, 118, 118); padding: 10px; border-radius: 5px; background: rgb(180, 180, 180); color: black;">
+<div style="width: 500px; border: 2px solid rgb(118, 118, 118); padding: 10px; border-radius: 3px; background: rgb(180, 180, 180); color: black;">
 
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
