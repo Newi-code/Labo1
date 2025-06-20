@@ -52,7 +52,7 @@ Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbs
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 
 ESQUEMA
-<div align="center">
+<div style="text-align: left; margin-left: 40px; display: flow-root;">
 <img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/ESQUEMA.jpg" width="40%" alt="Captura">
 </div><br>
 
