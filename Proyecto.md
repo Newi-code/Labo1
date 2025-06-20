@@ -47,7 +47,7 @@ Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbs
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 
 ESQUEMA
-<div style="width: 500px; border: 2px solid rgb(100, 100, 100); padding: 10px; border-radius: 5px; background: rgb(150, 150, 150); color: black;">
+<div style="background-color: #f6f8fa;width: 500px; border: 1px solid #d0d7de; border-radius: 6px; padding: 16px; margin: 10px 0;">
 &nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;switch (estado) {<br>
 &nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;case 0: // VERDE<br>
 &nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;// Lógica del estado verde<br>
