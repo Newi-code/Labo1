@@ -51,7 +51,7 @@ Amarillo a Verde&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 segundos)&nbsp;&nbsp;&nbsp;&nbs
 -	<b>Implementación en Código</b>:<br>
 La máquina de estados se implementa mediante una estructura switch-case en el loop principal:<br>
 
-ESQUEMA
+<b>ESQUEMA</b><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/Newi-code/Labo1/imagenes/ESQUEMA.jpg" width="40%" alt="Esquema">
 
 -	<b>Variables de Control</b>:<br>
