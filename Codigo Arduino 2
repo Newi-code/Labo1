@@ -8,6 +8,7 @@
 #define INFRACCION 7  // Pin para recibir RF
 
 int estado = 0;
+int VieneDe = 0;
 unsigned long tiempoEstado = 0;  
 // Variables de control del semaforo
 
@@ -45,6 +46,7 @@ void loop() {
       digitalWrite(ROJO, LOW);
       if (ahora - tiempoEstado >= 10000) {
         estado = 1;
+        VieneDe = 0;
         tiempoEstado = ahora;
       }
       break;  // Mantiene verde por 10s, desp pasa a amarillo
@@ -54,29 +56,26 @@ void loop() {
       digitalWrite(AMARILLO, HIGH);
       digitalWrite(ROJO, LOW);
       if (ahora - tiempoEstado >= 3000) {
-        estado = 2;
+        if(VieneDe == 0){
+          estado = 2;
+        }
+        else{
+          estado = 0;
+        }
         tiempoEstado = ahora;
       }
-      break;  // Mantiene amarillo por 3s, desp cambia a rojo
+      break;  // Mantiene amarillo por 3s, desp cambia a rojo o verde
 
     case 2: // ROJO
       digitalWrite(VERDE, LOW);
       digitalWrite(AMARILLO, LOW);
       digitalWrite(ROJO, HIGH);
       if (ahora - tiempoEstado >= 10000) {
-        estado = 3;
+        estado = 1;
+        VieneDe = 2;
         tiempoEstado = ahora;
       }
       break;  // Mantiene rojo por 10s, desp pasa por transicion a verde
 
-    case 3: // AMARILLO A VERDE
-      digitalWrite(VERDE, LOW);
-      digitalWrite(AMARILLO, HIGH);
-      digitalWrite(ROJO, LOW);
-      if (ahora - tiempoEstado >= 3000) {
-        estado = 0;
-        tiempoEstado = ahora;
-      }
-      break;  // Amarillo por 3s antes de volver a verde
-  }
+   }
 }
