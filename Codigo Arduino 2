@@ -1,0 +1,82 @@
+ semaforo 2.2
+
+#include <VirtualWire.h>  
+
+#define VERDE 4
+#define AMARILLO 5
+#define ROJO 6
+#define INFRACCION 7  // Pin para recibir RF
+
+int estado = 0;
+unsigned long tiempoEstado = 0;  
+// Variables de control del semaforo
+
+void setup() {
+  pinMode(ROJO, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(VERDE, OUTPUT);
+
+  vw_set_rx_pin(INFRACCION);
+  vw_setup(2000);
+  vw_rx_start();  // Configura RF para recibir mensajes
+
+  Serial.begin(9600);
+  tiempoEstado = millis();  // Configurar pines, RF y tiempo inicial
+}
+
+void loop() {
+  unsigned long ahora = millis();
+  uint8_t tamano = 32;
+  char mensaje[tamano];
+
+  if (vw_get_message((uint8_t *)mensaje, &tamano)) {
+    mensaje[tamano] = '\0';
+    if (strcmp(mensaje, "INFRACCION") == 0) {
+      estado = 2;
+      tiempoEstado = ahora;
+      Serial.println("Semaforo 2 recibio INFRACCION: cambiando a ROJO");
+    }
+  }  // Si recibe el mensaje "INFRACCION", cambia inmediatamente a rojo
+
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 1;
+        tiempoEstado = ahora;
+      }
+      break;  // Mantiene verde por 10s, desp pasa a amarillo
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;  // Mantiene amarillo por 3s, desp cambia a rojo
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 3;
+        tiempoEstado = ahora;
+      }
+      break;  // Mantiene rojo por 10s, desp pasa por transicion a verde
+
+    case 3: // AMARILLO A VERDE
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;  // Amarillo por 3s antes de volver a verde
+  }
+}
