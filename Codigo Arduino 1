@@ -1,0 +1,100 @@
+semaforo 1.2
+
+#include <VirtualWire.h> 
+
+#define VERDE 4
+#define AMARILLO 5
+#define ROJO 6
+#define BOTON 7
+#define SENSOR A0
+#define ALARMA 10  // Pin para emitir RF
+
+int estado = 0;
+unsigned long tiempoEstado = 0;
+bool botonPresionado = false;
+bool esperandoCambio = false;
+int ultimoEstadoBoton = LOW;  
+// Variables de control del estado del semaforo y del boton
+
+void setup() {
+  pinMode(VERDE, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(ROJO, OUTPUT);
+  pinMode(BOTON, INPUT);
+
+  vw_set_tx_pin(ALARMA);
+  vw_setup(2000);  // Inicializar RF para transmitir a 2000 bps
+
+  Serial.begin(9600);
+  tiempoEstado = millis();  // Configurar pines, RF y tiempo inicial
+}
+
+void loop() {
+  unsigned long ahora = millis();  // Leer el tiempo actual
+
+  int valorSensor = analogRead(SENSOR);
+  bool hayInfraccion = (valorSensor < 500);  // Detectar si alguien pasa durante rojo
+
+  int estadoActualBoton = digitalRead(BOTON);
+  if (estadoActualBoton == HIGH && ultimoEstadoBoton == LOW) {
+    Serial.println("Boton presionado");
+    botonPresionado = true;
+  }
+  ultimoEstadoBoton = estadoActualBoton;  // Detectar si se presiono el boton peatonal
+
+  switch (estado) {
+    case 0: // VERDE
+      digitalWrite(VERDE, HIGH);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, LOW);
+      if (botonPresionado && !esperandoCambio) {
+        esperandoCambio = true;
+        tiempoEstado = ahora;
+      }
+      if (esperandoCambio || ahora - tiempoEstado >= 10000) {
+        estado = 1;
+        tiempoEstado = ahora;
+      }
+      break;  // Mantiene verde por 10s o hasta que se presione el boton, desp pasa a amarillo
+
+    case 1: // AMARILLO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 2;
+        tiempoEstado = ahora;
+      }
+      break;  // Mantiene amarillo por 3s, desp cambia a rojo
+
+    case 2: // ROJO
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, LOW);
+      digitalWrite(ROJO, HIGH);
+
+      if (hayInfraccion) {
+        const char *msg = "INFRACCION";
+        vw_send((uint8_t *)msg, strlen(msg));
+        vw_wait_tx();
+        Serial.println("Infraccion detectada: enviando senal al Semaforo 2");
+      }
+
+      if (ahora - tiempoEstado >= 10000) {
+        estado = 3;
+        tiempoEstado = ahora;
+        botonPresionado = false;
+        esperandoCambio = false;
+      }
+      break;  // Envia mensaje por RF si hay infraccion, espera 10s, desp pasa a transicion amarillo
+
+    case 3: // AMARILLO A VERDE
+      digitalWrite(VERDE, LOW);
+      digitalWrite(AMARILLO, HIGH);
+      digitalWrite(ROJO, LOW);
+      if (ahora - tiempoEstado >= 3000) {
+        estado = 0;
+        tiempoEstado = ahora;
+      }
+      break;  // Transicion de regreso a verde: amarillo por 3s
+  }
+}
