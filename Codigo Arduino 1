@@ -10,6 +10,7 @@ semaforo 1.2
 #define ALARMA 10  // Pin para emitir RF
 
 int estado = 0;
+int VieneDe = 0;
 unsigned long tiempoEstado = 0;
 bool botonPresionado = false;
 bool esperandoCambio = false;
@@ -53,6 +54,7 @@ void loop() {
       }
       if (esperandoCambio || ahora - tiempoEstado >= 10000) {
         estado = 1;
+        VieneDe = 0;
         tiempoEstado = ahora;
       }
       break;  // Mantiene verde por 10s o hasta que se presione el boton, desp pasa a amarillo
@@ -62,10 +64,15 @@ void loop() {
       digitalWrite(AMARILLO, HIGH);
       digitalWrite(ROJO, LOW);
       if (ahora - tiempoEstado >= 3000) {
+        if(VieneDe == 0){
         estado = 2;
+        }
+        else {
+        estado = 0;
+        }
         tiempoEstado = ahora;
       }
-      break;  // Mantiene amarillo por 3s, desp cambia a rojo
+      break;  // Mantiene amarillo por 3s, desp cambia a rojo o verde
 
     case 2: // ROJO
       digitalWrite(VERDE, LOW);
@@ -81,20 +88,11 @@ void loop() {
 
       if (ahora - tiempoEstado >= 10000) {
         estado = 3;
+        VieneDe = 2;
         tiempoEstado = ahora;
         botonPresionado = false;
         esperandoCambio = false;
       }
       break;  // Envia mensaje por RF si hay infraccion, espera 10s, desp pasa a transicion amarillo
-
-    case 3: // AMARILLO A VERDE
-      digitalWrite(VERDE, LOW);
-      digitalWrite(AMARILLO, HIGH);
-      digitalWrite(ROJO, LOW);
-      if (ahora - tiempoEstado >= 3000) {
-        estado = 0;
-        tiempoEstado = ahora;
-      }
-      break;  // Transicion de regreso a verde: amarillo por 3s
   }
 }
