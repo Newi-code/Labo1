@@ -87,7 +87,7 @@ void loop() {
       }
 
       if (ahora - tiempoEstado >= 10000) {
-        estado = 3;
+        estado = 1;
         VieneDe = 2;
         tiempoEstado = ahora;
         botonPresionado = false;
