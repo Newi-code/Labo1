@@ -33,23 +33,23 @@ void loop() {
   if (vw_get_message((uint8_t *)mensaje, &tamano)) {
     mensaje[tamano] = '\0';
     if (strcmp(mensaje, "INFRACCION") == 0) {
-      estado = 2;
+      estado = 0;
       tiempoEstado = ahora;
       Serial.println("Semaforo 2 recibio INFRACCION: cambiando a ROJO");
     }
   }  // Si recibe el mensaje "INFRACCION", cambia inmediatamente a rojo
 
   switch (estado) {
-    case 0: // VERDE
-      digitalWrite(VERDE, HIGH);
+    case 0: // ROJO
+      digitalWrite(VERDE, LOW);
       digitalWrite(AMARILLO, LOW);
-      digitalWrite(ROJO, LOW);
+      digitalWrite(ROJO, HIGH);
       if (ahora - tiempoEstado >= 10000) {
         estado = 1;
         VieneDe = 0;
         tiempoEstado = ahora;
       }
-      break;  // Mantiene verde por 10s, desp pasa a amarillo
+      break;  // Mantiene rojo por 10s, desp pasa a amarillo
 
     case 1: // AMARILLO
       digitalWrite(VERDE, LOW);
@@ -66,16 +66,16 @@ void loop() {
       }
       break;  // Mantiene amarillo por 3s, desp cambia a rojo o verde
 
-    case 2: // ROJO
-      digitalWrite(VERDE, LOW);
+    case 2: // VERDE
+      digitalWrite(VERDE, HIGH);
       digitalWrite(AMARILLO, LOW);
-      digitalWrite(ROJO, HIGH);
+      digitalWrite(ROJO, LOW);
       if (ahora - tiempoEstado >= 10000) {
         estado = 1;
         VieneDe = 2;
         tiempoEstado = ahora;
       }
-      break;  // Mantiene rojo por 10s, desp pasa por transicion a verde
+      break;  // Mantiene verde por 10s, desp pasa por transicion a verde
 
    }
 }
